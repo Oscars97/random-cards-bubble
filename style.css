@@ -1,0 +1,49 @@
+*{box-sizing: border-box;}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('pexels-jalil-shams-1007523.jpg');
+    background-position: center;
+    background-repeat: none;
+    background-size: auto;
+}
+.container{
+    width: 350px;
+    margin: 2% auto;
+    color: rgba(255, 0, 0, 0.692);
+    height: 300px;
+    padding: 2% 2%;
+    background-color: rgba(0, 0, 0, 0.479);
+    
+}
+.cards{
+    background-color: rgba(0, 0, 0, 0.479);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card{
+    background-color: white;
+    width: 27%;
+    height: 520px;
+    margin: 2% auto;
+    border-radius: 10px;
+}
+.top, .body, .bottom{
+    font-size: 2em;
+}
+.top, .bottom{
+    padding: 3%;
+    color: red;
+}
+.body{
+    margin-top: 20%;
+    margin-left: 43%;
+}
+.bottom{
+    color: red;
+    margin-top: 19%;
+    float: right;
+    rotate: 180deg;
+}
