@@ -1,11 +1,12 @@
 let btn = document.querySelector('#btnSend');
 var cuantity = document.querySelector('#cuantity');
+let buttonsDiv = document.querySelector('.buttons');
 let list = [];
 
 btn.addEventListener('click', () => {
     let cards = cuantity.value;
     let container = document.querySelector('.cards');
-    
+
     for (let i = 0; i < cards; i++) {
         let symbol = getSymbol(getRandom(4));
         let numbers = ['A', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']; //14
@@ -43,15 +44,20 @@ btn.addEventListener('click', () => {
 
 
         list.push(parent);
-        
+
 
     }
     let bubble = document.createElement('button');
+    bubble.classList.add('bubbleBtn');
+    bubble.setAttribute('type', 'button');
     bubble.innerHTML = 'Sort with bubble method';
     let selection = document.createElement('button');
+    selection.classList.add('selectionBtn');
     selection.innerHTML = 'Sort with selection method';
-    container.appendChild(bubble);
-    container.appendChild(selection);
+    buttonsDiv.appendChild(bubble);
+    buttonsDiv.appendChild(selection);
+
+    bubble.addEventListener('click', sorting);
 });
 
 function getRandom(max) {
@@ -79,13 +85,9 @@ function getSymbol(option) {
     }
 }
 
-const sorting = (list)=>{
-    newArray=[];
-    for (let i = 0; i < list.length; i++) {
-        let value = list[i].childNodes[1].innerHTML;
-        newArray.push(value);
-    }
-    console.log(newArray.sort());
-    
+
+const sorting = () => {
+    //let value = list[i].childNodes[1].innerHTML;
+
 }
 

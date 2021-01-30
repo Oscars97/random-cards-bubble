@@ -17,6 +17,17 @@ body{
     background-color: rgba(0, 0, 0, 0.479);
     
 }
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 2% auto;
+}
+.buttons button{
+    width: 40%;
+    margin: 0 0 0 2%;
+    
+}
 .cards{
     background-color: rgba(0, 0, 0, 0.479);
     display: flex;
