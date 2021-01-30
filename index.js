@@ -9,7 +9,7 @@ btn.addEventListener('click', () => {
 
     for (let i = 0; i < cards; i++) {
         let symbol = getSymbol(getRandom(4));
-        let numbers = ['A', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']; //14
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 10
 
         let parent = document.createElement('div');
         parent.style.backgroundColor = 'white';
@@ -25,7 +25,7 @@ btn.addEventListener('click', () => {
 
 
         let middle = document.createElement('div');
-        middle.innerHTML = numbers[getRandom(14)];
+        middle.innerHTML = numbers[getRandom(10)];
         middle.classList.add('body');
 
         let bottom = document.createElement('div');
@@ -87,6 +87,63 @@ function getSymbol(option) {
 
 
 const sorting = () => {
+    let wall = list.length - 1; //we start the wall at the end of the array
+    while (wall > 0) {
+        let i = 0;
+        let j = i + 1
+        while (i < wall) {
+            //compare the adjacent positions, if the right one is bigger, we have to swap
+            if (Number(list[i].childNodes[1].innerHTML) > Number(list[j].childNodes[1].innerHTML)) {
+                console.log(typeof(list[i].childNodes[1].innerHTML));
+                let aux = list[i];
+                list[i] = list[j];
+                list[j] = aux;
+            }
+            i++;
+            j++;
+        }
+        wall--; //decrease the wall for optimization
+    }
+    let sortedDiv = document.querySelector('.sortedCards');
+    // let sortedTitle = document.createElement('h1');
+    // sortedTitle.innerHTML = 'Sorted items';
+    // sortedDiv.appendChild(sortedTitle);
+    for(let i = 0; i<list.length;i++){
+        let symbol = list[i].childNodes[0].innerHTML;
+        let numbers = list[i].childNodes[1].innerHTML; //14
+
+        let parent = document.createElement('div');
+        parent.style.backgroundColor = 'white';
+        parent.style.color = 'black';
+        parent.style.width = '7%';
+        parent.style.height = '7%';
+        parent.classList.add('card');
+        parent.style.margin = '0 5px 5px 5px';
+
+        let top = document.createElement('div');
+        top.innerHTML = symbol;
+        top.classList.add('top');
+
+
+        let middle = document.createElement('div');
+        middle.innerHTML = numbers;
+        middle.classList.add('body');
+
+        let bottom = document.createElement('div');
+        bottom.innerHTML = symbol;
+        bottom.classList.add('bottom');
+
+        if (symbol === '\u2660' || symbol === '\u2663') {
+            top.style.color = 'black';
+            bottom.style.color = 'black';
+        }
+
+        parent.appendChild(top);
+        parent.appendChild(middle);
+        parent.appendChild(bottom);
+        sortedDiv.appendChild(parent);
+
+    }
     //let value = list[i].childNodes[1].innerHTML;
 
 }
