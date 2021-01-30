@@ -43,8 +43,15 @@ btn.addEventListener('click', () => {
 
 
         list.push(parent);
+        
 
     }
+    let bubble = document.createElement('button');
+    bubble.innerHTML = 'Sort with bubble method';
+    let selection = document.createElement('button');
+    selection.innerHTML = 'Sort with selection method';
+    container.appendChild(bubble);
+    container.appendChild(selection);
 });
 
 function getRandom(max) {
@@ -72,4 +79,13 @@ function getSymbol(option) {
     }
 }
 
+const sorting = (list)=>{
+    newArray=[];
+    for (let i = 0; i < list.length; i++) {
+        let value = list[i].childNodes[1].innerHTML;
+        newArray.push(value);
+    }
+    console.log(newArray.sort());
+    
+}
 
