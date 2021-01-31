@@ -9,7 +9,7 @@ btn.addEventListener('click', () => {
 
     for (let i = 0; i < cards; i++) {
         let symbol = getSymbol(getRandom(4));
-        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 10
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
 
         let parent = document.createElement('div');
         parent.style.backgroundColor = 'white';
@@ -54,10 +54,12 @@ btn.addEventListener('click', () => {
     let selection = document.createElement('button');
     selection.classList.add('selectionBtn');
     selection.innerHTML = 'Sort with selection method';
+    selection.setAttribute('type', 'button');
     buttonsDiv.appendChild(bubble);
     buttonsDiv.appendChild(selection);
 
     bubble.addEventListener('click', sorting);
+    selection.addEventListener('click', selectionSort);
 });
 
 function getRandom(max) {
@@ -87,6 +89,7 @@ function getSymbol(option) {
 
 
 const sorting = () => {
+    alert('WHEN YOU PRESS THE BUBBLE BUTTON, THE CARDS ARE GOING TO SORT FROM MIN TO MAX');
     let wall = list.length - 1; //we start the wall at the end of the array
     while (wall > 0) {
         let i = 0;
@@ -146,5 +149,65 @@ const sorting = () => {
     }
     //let value = list[i].childNodes[1].innerHTML;
 
+}
+
+
+
+
+
+const selectionSort = ()=>{
+    alert('WHEN YOU PRESS THE SORT BUTTON, THE CARDS ARE GOING TO SORT FROM MAX TO MIN');
+    let min = 0;
+    while (min < list.length-1){
+        for(let i = min+1; i < list.length; i++) {
+          if (Number(list[min].childNodes[1].innerHTML) < Number(list[i].childNodes[1].innerHTML)) {
+            let aux = Number(list[min].childNodes[1].innerHTML);
+            list[min].childNodes[1].innerHTML = Number(list[i].childNodes[1].innerHTML);
+            list[i].childNodes[1].innerHTML = Number(aux);
+          }
+        }
+        min++;
+    }
+    let selectionSorted = document.querySelector('.selectionSort');
+    // let sortedTitle = document.createElement('h1');
+    // sortedTitle.innerHTML = 'Sorted items';
+    // sortedDiv.appendChild(sortedTitle);
+    for(let i = 0; i<list.length;i++){
+        let symbol = list[i].childNodes[0].innerHTML;
+        let numbers = list[i].childNodes[1].innerHTML; //14
+
+        let parent = document.createElement('div');
+        parent.style.backgroundColor = 'white';
+        parent.style.color = 'black';
+        parent.style.width = '7%';
+        parent.style.height = '7%';
+        parent.classList.add('card');
+        parent.style.margin = '0 5px 5px 5px';
+
+        let top = document.createElement('div');
+        top.innerHTML = symbol;
+        top.classList.add('top');
+
+
+        let middle = document.createElement('div');
+        middle.innerHTML = numbers;
+        middle.classList.add('body');
+
+        let bottom = document.createElement('div');
+        bottom.innerHTML = symbol;
+        bottom.classList.add('bottom');
+
+        if (symbol === '\u2660' || symbol === '\u2663') {
+            top.style.color = 'black';
+            bottom.style.color = 'black';
+        }
+
+        parent.appendChild(top);
+        parent.appendChild(middle);
+        parent.appendChild(bottom);
+        selectionSorted.appendChild(parent);
+
+    }
+	
 }
 
