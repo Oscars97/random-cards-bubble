@@ -3,6 +3,9 @@ var cuantity = document.querySelector('#cuantity');
 let buttonsDiv = document.querySelector('.buttons');
 let list = [];
 
+// Nuestra primera funcion lo que hace es obtener el valor de cuantity y crea la cantidad de 
+// cartas con respecto a ese valor
+
 btn.addEventListener('click', () => {
     let cards = cuantity.value;
     let container = document.querySelector('.cards');
@@ -42,11 +45,9 @@ btn.addEventListener('click', () => {
         parent.appendChild(bottom);
         container.appendChild(parent);
 
-
         list.push(parent);
-
-
     }
+
     let bubble = document.createElement('button');
     bubble.classList.add('bubbleBtn');
     bubble.setAttribute('type', 'button');
@@ -108,50 +109,8 @@ const sorting = () => {
         wall--; //decrease the wall for optimization
     }
     let sortedDiv = document.querySelector('.sortedCards');
-    // let sortedTitle = document.createElement('h1');
-    // sortedTitle.innerHTML = 'Sorted items';
-    // sortedDiv.appendChild(sortedTitle);
-    for(let i = 0; i<list.length;i++){
-        let symbol = list[i].childNodes[0].innerHTML;
-        let numbers = list[i].childNodes[1].innerHTML; //14
-
-        let parent = document.createElement('div');
-        parent.style.backgroundColor = 'white';
-        parent.style.color = 'black';
-        parent.style.width = '7%';
-        parent.style.height = '7%';
-        parent.classList.add('card');
-        parent.style.margin = '0 5px 5px 5px';
-
-        let top = document.createElement('div');
-        top.innerHTML = symbol;
-        top.classList.add('top');
-
-
-        let middle = document.createElement('div');
-        middle.innerHTML = numbers;
-        middle.classList.add('body');
-
-        let bottom = document.createElement('div');
-        bottom.innerHTML = symbol;
-        bottom.classList.add('bottom');
-
-        if (symbol === '\u2660' || symbol === '\u2663') {
-            top.style.color = 'black';
-            bottom.style.color = 'black';
-        }
-
-        parent.appendChild(top);
-        parent.appendChild(middle);
-        parent.appendChild(bottom);
-        sortedDiv.appendChild(parent);
-
-    }
-    //let value = list[i].childNodes[1].innerHTML;
-
+    showCards(list, sortedDiv); //we call our function and send our sorted array and where we gonna place it 
 }
-
-
 
 
 
@@ -169,9 +128,10 @@ const selectionSort = ()=>{
         min++;
     }
     let selectionSorted = document.querySelector('.selectionSort');
-    // let sortedTitle = document.createElement('h1');
-    // sortedTitle.innerHTML = 'Sorted items';
-    // sortedDiv.appendChild(sortedTitle);
+    showCards(list, selectionSorted); //we call our function and send our sorted array and where we gonna place it 
+}
+
+const showCards = (list, div)=>{
     for(let i = 0; i<list.length;i++){
         let symbol = list[i].childNodes[0].innerHTML;
         let numbers = list[i].childNodes[1].innerHTML; //14
@@ -187,7 +147,6 @@ const selectionSort = ()=>{
         let top = document.createElement('div');
         top.innerHTML = symbol;
         top.classList.add('top');
-
 
         let middle = document.createElement('div');
         middle.innerHTML = numbers;
@@ -205,9 +164,6 @@ const selectionSort = ()=>{
         parent.appendChild(top);
         parent.appendChild(middle);
         parent.appendChild(bottom);
-        selectionSorted.appendChild(parent);
-
+        div.appendChild(parent);
     }
-	
 }
-
